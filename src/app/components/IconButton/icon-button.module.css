@@ -1,0 +1,27 @@
+.root {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: 100ms;
+}
+
+.plus,
+.minus:active {
+    background-color: var(--color-orange);
+}
+
+.minus,
+.minus:disabled,
+.plus:disabled {
+    background-color: var(--color-orange-disabled);
+}
+
+.plus:hover,
+.minus:hover {
+    background-color: var(--color-orange-hover);
+}
