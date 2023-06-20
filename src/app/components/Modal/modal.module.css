@@ -1,0 +1,52 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    padding: 24px;
+    gap: 24px;
+
+    border-radius: var(--border-radius-default);
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--color-primary);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+}
+
+.icon:hover {
+    cursor: pointer;
+}
+
+.icon path {
+    fill: var(--color-primary);
+}
+
+.subtitle {
+    font-size: 16px;
+    color: var(--color-primary);
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: min-content;
+}

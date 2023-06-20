@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
 
 import IconArrow from "@/app/assets/icon-arrow.svg";
 
@@ -16,6 +16,9 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedItem, setSelectedItem] = useState<number>(-1);
 
+    const buttonRef = useRef<HTMLButtonElement>(null);
+    const listRef = useRef<HTMLUListElement>(null);
+
     function toggle() {
         setIsOpen((prev) => !prev);
     }
@@ -25,41 +28,63 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
         setIsOpen(false);
     }
 
+    useEffect(() => {
+        function handler(e: Event) {
+            if (
+                e.target instanceof HTMLElement &&
+                !listRef.current?.contains(e.target) &&
+                !buttonRef.current?.contains(e.target)
+            ) {
+                setIsOpen(false);
+            }
+        }
+        window.addEventListener("click", handler);
+        return () => window.removeEventListener("click", handler);
+    }, []);
+
     return (
         <div className={styles.root}>
-            <label className={styles.label} onClick={toggle} htmlFor={htmlId}>
+            <label className={styles.label} htmlFor={htmlId}>
                 {label}
-                <div
+                <button
+                    ref={buttonRef}
+                    id={htmlId}
+                    type="button"
+                    aria-expanded={isOpen}
+                    onClick={toggle}
                     className={classNames(
                         styles.select,
                         selectedItem !== -1 && styles.active,
-                        isOpen && styles.focus
+                        isOpen && styles.focus,
                     )}
                 >
                     {selectedItem === -1 ? placeholder : items[selectedItem]}
                     <IconArrow
-                        aria-label="icon-arrow"
                         className={styles.icon}
                         style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
                     />
-                </div>
+                </button>
             </label>
-
-            {!isOpen ? null : (
-                <ul className={styles.list}>
-                    {items.length === 0
-                        ? "empty"
-                        : items.map((item, i) => (
-                              <li
-                                  key={i}
-                                  className={styles.list_item}
-                                  onClick={() => handleSelect(i)}
-                              >
-                                  {item}
-                              </li>
-                          ))}
-                </ul>
-            )}
+            <div className={styles.list_wrapper}>
+                {isOpen && (
+                    <ul className={styles.list} ref={listRef}>
+                        {items.length === 0
+                            ? "empty"
+                            : items.map((item, i) => (
+                                  <li
+                                      key={i}
+                                      className={classNames(
+                                          styles.list_item,
+                                          i === selectedItem && styles.active,
+                                      )}
+                                      onClick={() => handleSelect(i)}
+                                  >
+                                      {item}
+                                  </li>
+                              ))}
+                    </ul>
+                )}
+            </div>
         </div>
     );
 }

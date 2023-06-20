@@ -1,16 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import IconButton from "./components/IconButton";
-import TextButton from "./components/TextButton";
-import TextInput from "./components/TextInput";
-import Dropdown from "./components/Dropdown";
+import IconButton from "@/app/components/IconButton";
+import TextButton from "@/app/components/TextButton";
+import TextInput from "@/app/components/TextInput";
+import Dropdown from "@/app/components/Dropdown";
+import Modal from "@/app/components/Modal";
+import Collapse from "@/app/components/Collapse";
 
 function Page() {
     const [text, setText] = useState("");
 
     return (
-        <div style={{ padding: 40 }}>
+        <div
+            style={{
+                padding: 80,
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+                width: "100%",
+                background: "#EAEAEA",
+            }}
+        >
             <IconButton content="minus" disabled={false} onClick={() => console.log("minus")} />
             <IconButton content="plus" disabled={false} onClick={() => console.log("plus")} />
             <IconButton content="minus" disabled={true} />
@@ -21,19 +32,24 @@ function Page() {
 
             <TextInput
                 htmlId="input-first"
-                label="Label"
-                placeholder="Placeholder"
+                label="Название"
+                placeholder="Введите название"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
 
-            <TextInput htmlId="input-second" label="Label" placeholder="Placeholder" />
-
             <Dropdown
                 htmlId="dropdown-first"
-                label="Label"
-                placeholder="Placeholder"
-                items={["Не выбрано", "Item1", "Item2", "Item3"]}
+                label="Жанр"
+                placeholder="Выберите жанр"
+                items={["Не выбран", "Боевик", "Комедия", "Фэнтези", "Ужасы"]}
+            />
+
+            <Modal title="Удаление билета" subtitle="Вы уверены, что хотите удалить билет?" />
+
+            <Collapse
+                title="Когда был основан билетопоиск?"
+                text="Мы — крупнейший сервис о кино в рунете. На нем вы сможете посмотреть фильмы и сериалы, купить билеты в кино, узнать рейтинги популярных видео и интересные факты, поставить фильмам оценки, написать рецензии и дополнить описание фильмов."
             />
         </div>
     );

@@ -1,5 +1,6 @@
 .root {
     height: 40px;
+    width: fit-content;
     padding: 10px 16px;
     font-weight: 500;
     display: flex;
