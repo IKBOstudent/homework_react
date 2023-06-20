@@ -1,0 +1,28 @@
+.label {
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--color-primary);
+}
+
+.input {
+    height: 40px;
+    padding: 10px 16px;
+    min-width: 360px;
+
+    background-color: white;
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-default);
+
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--color-gray);
+}
+
+.input:focus {
+    color: var(--color-primary);
+    border-color: var(--color-orange);
+}

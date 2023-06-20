@@ -1,0 +1,78 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.label {
+    width: min-content;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: var(--color-primary);
+}
+
+.label:hover {
+    cursor: pointer;
+}
+
+.select {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 40px;
+    padding: 10px 16px;
+    width: 360px;
+
+    background-color: white;
+    color: var(--color-gray);
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-default);
+
+    outline: none;
+
+    transition: 100ms;
+}
+
+.select.active {
+    color: var(--color-primary);
+}
+
+.select.focus {
+    color: var(--color-primary);
+    border-color: var(--color-orange);
+}
+
+.icon {
+    transition: 200ms;
+    width: 20px;
+    height: 20px;
+}
+
+.icon path {
+    fill: var(--color-gray);
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 360px;
+    padding: 8px;
+
+    background-color: white;
+    box-shadow: 0px 10px 22px -4px #1b1f231f;
+    border-radius: var(--border-radius-default);
+    list-style: none;
+}
+
+.list_item {
+    height: 42px;
+    padding: 12px;
+    color: var(--color-primary);
+    transition: 100ms;
+}
+
+.list_item:hover {
+    cursor: pointer;
+    background-color: var(--border-color-default);
+}

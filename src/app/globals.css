@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     font-style: normal;
     font-size: 14px;
     line-height: 20px;
@@ -13,6 +13,7 @@
 
 html,
 body {
+    --border-color-default: #e1e3e6;
     --border-radius-small: 4px;
     --border-radius-default: 8px;
 
@@ -21,6 +22,7 @@ body {
     --color-orange-hover: #e94e00;
 
     --color-primary: #1b1f23;
+    --color-gray: #999fa6;
 
     max-width: 100vw;
     overflow-x: hidden;

@@ -1,26 +1,30 @@
-import Image from 'next/image';
+import IconMinus from "@/app/assets/icon-minus.svg";
+import IconPlus from "@/app/assets/icon-plus.svg";
 
-import styles from './icon-button.module.css';
-import classNames from 'classnames';
+import styles from "./icon-button.module.css";
+import classNames from "classnames";
+import { MouseEvent } from "react";
 
 interface Props {
-    content: 'plus' | 'minus';
+    content: "plus" | "minus";
     disabled: boolean;
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-function IconButton({ content, disabled }: Props) {
+function IconButton({ content, disabled, onClick }: Props) {
     return (
         <button
-            className={classNames(styles.root, content === 'plus' ? styles.plus : styles.minus)}
-            disabled={disabled}>
-            <Image
-                src={content === 'plus' ? '/images/icon-plus.svg' : '/images/icon-minus.svg'}
-                alt="icon"
-                width={12}
-                height={12}
-                className={styles.icon}
-                priority
-            />
+            type="button"
+            aria-label={`button-${content}`}
+            className={classNames(styles.root, content === "plus" ? styles.plus : styles.minus)}
+            disabled={disabled}
+            onClick={onClick}
+        >
+            {content === "plus" ? (
+                <IconPlus className={styles.icon} />
+            ) : (
+                <IconMinus className={styles.icon} />
+            )}
         </button>
     );
 }

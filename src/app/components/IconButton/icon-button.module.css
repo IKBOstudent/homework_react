@@ -6,22 +6,41 @@
     justify-content: center;
     border: none;
     border-radius: var(--border-radius-small);
-    cursor: pointer;
+
     transition: 100ms;
 }
 
-.plus,
-.minus:active {
+.icon {
+    width: 12px;
+    height: 12px;
+}
+
+.icon path {
+    fill: white;
+}
+
+.plus {
     background-color: var(--color-orange);
 }
 
-.minus,
-.minus:disabled,
-.plus:disabled {
+.minus {
     background-color: var(--color-orange-disabled);
 }
 
 .plus:hover,
 .minus:hover {
+    cursor: pointer;
     background-color: var(--color-orange-hover);
+}
+
+.plus:active,
+.minus:active {
+    cursor: pointer;
+    background-color: var(--color-orange);
+}
+
+.minus:disabled,
+.plus:disabled {
+    cursor: auto;
+    background-color: var(--color-orange-disabled);
 }
