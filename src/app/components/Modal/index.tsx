@@ -24,8 +24,12 @@ export default function Modal({ title, subtitle }: Props) {
                 <span className={styles.subtitle}>{subtitle}</span>
             </div>
             <div className={styles.buttons}>
-                <TextButton content="Да" style="filled" onClick={() => console.log("Да")} />
-                <TextButton content="Нет" style="outlined" onClick={() => console.log("Нет")} />
+                <TextButton variant="filled" onClick={() => console.log("Да")}>
+                    Да
+                </TextButton>
+                <TextButton variant="outlined" onClick={() => console.log("Нет")}>
+                    Нет
+                </TextButton>
             </div>
         </div>
     );

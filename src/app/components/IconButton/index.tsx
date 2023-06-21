@@ -1,26 +1,23 @@
+import { ButtonHTMLAttributes } from "react";
+import clsx from "clsx";
+
 import IconMinus from "@/app/assets/icon-minus.svg";
 import IconPlus from "@/app/assets/icon-plus.svg";
 
 import styles from "./icon-button.module.css";
-import classNames from "classnames";
-import { MouseEvent } from "react";
 
-interface Props {
-    content: "plus" | "minus";
-    disabled: boolean;
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+    icon: "plus" | "minus";
 }
 
-function IconButton({ content, disabled, onClick }: Props) {
+function IconButton({ className, icon, ...props }: Props) {
     return (
         <button
             type="button"
-            aria-label={`button-${content}`}
-            className={classNames(styles.root, content === "plus" ? styles.plus : styles.minus)}
-            disabled={disabled}
-            onClick={onClick}
+            className={clsx(className, styles.root, icon === "plus" ? styles.plus : styles.minus)}
+            {...props}
         >
-            {content === "plus" ? (
+            {icon === "plus" ? (
                 <IconPlus className={styles.icon} />
             ) : (
                 <IconMinus className={styles.icon} />

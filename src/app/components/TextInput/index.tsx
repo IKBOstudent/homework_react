@@ -1,26 +1,17 @@
-import { ChangeEvent } from "react";
+import { InputHTMLAttributes } from "react";
 import styles from "./text-input.module.css";
+import clsx from "clsx";
 
-interface Props {
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
     htmlId: string;
     label: string;
-    placeholder: string;
-    value?: string;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function TextInput({ htmlId, label, placeholder, value, onChange }: Props) {
+export default function TextInput({ className, htmlId, label, ...props }: Props) {
     return (
         <label className={styles.label} htmlFor={htmlId}>
             {label}
-            <input
-                type="text"
-                id={htmlId}
-                className={styles.input}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-            />
+            <input type="text" id={htmlId} className={clsx(className, styles.input)} {...props} />
         </label>
     );
 }

@@ -1,9 +1,9 @@
 import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 
 import IconArrow from "@/app/assets/icon-arrow.svg";
 
 import styles from "./dropdown.module.css";
-import classNames from "classnames";
 
 interface Props {
     htmlId: string;
@@ -47,41 +47,36 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
             <label className={styles.label} htmlFor={htmlId}>
                 {label}
                 <button
+                    type="button"
                     ref={buttonRef}
                     id={htmlId}
-                    type="button"
-                    aria-expanded={isOpen}
                     onClick={toggle}
-                    className={classNames(
+                    className={clsx(
                         styles.select,
                         selectedItem !== -1 && styles.active,
                         isOpen && styles.focus,
                     )}
                 >
                     {selectedItem === -1 ? placeholder : items[selectedItem]}
-                    <IconArrow
-                        className={styles.icon}
-                        style={{ transform: isOpen ? "rotate(180deg)" : "none" }}
-                    />
+                    <IconArrow className={clsx(styles.icon, isOpen && styles.active)} />
                 </button>
             </label>
             <div className={styles.list_wrapper}>
                 {isOpen && (
                     <ul className={styles.list} ref={listRef}>
-                        {items.length === 0
-                            ? "empty"
-                            : items.map((item, i) => (
-                                  <li
-                                      key={i}
-                                      className={classNames(
-                                          styles.list_item,
-                                          i === selectedItem && styles.active,
-                                      )}
-                                      onClick={() => handleSelect(i)}
-                                  >
-                                      {item}
-                                  </li>
-                              ))}
+                        {items.length > 0 &&
+                            items.map((item, i) => (
+                                <li
+                                    key={i}
+                                    className={clsx(
+                                        styles.list_item,
+                                        i === selectedItem && styles.active,
+                                    )}
+                                    onClick={() => handleSelect(i)}
+                                >
+                                    {item}
+                                </li>
+                            ))}
                     </ul>
                 )}
             </div>

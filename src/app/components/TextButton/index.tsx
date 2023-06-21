@@ -1,24 +1,24 @@
-import { MouseEvent } from "react";
-import styles from "./text-button.module.css";
-import classNames from "classnames";
+import { ButtonHTMLAttributes } from "react";
+import clsx from "clsx";
 
-interface Props {
-    content: string;
-    style: "outlined" | "filled";
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
+import styles from "./text-button.module.css";
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant: "outlined" | "filled";
 }
 
-function TextButton({ content, style, onClick }: Props) {
+function TextButton({ children, className, variant, ...props }: Props) {
     return (
         <button
             type="button"
-            className={classNames(
+            className={clsx(
+                className,
                 styles.root,
-                style === "outlined" ? styles.outlined : styles.filled
+                variant === "outlined" ? styles.outlined : styles.filled,
             )}
-            onClick={onClick}
+            {...props}
         >
-            {content}
+            {children}
         </button>
     );
 }

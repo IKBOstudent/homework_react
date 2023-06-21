@@ -2,13 +2,20 @@
     height: 40px;
     width: fit-content;
     padding: 10px 16px;
-    font-weight: 500;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     border-radius: var(--border-radius-default);
-    cursor: pointer;
+
     transition: 100ms;
+
+    font-weight: 500;
+}
+
+.root:hover {
+    cursor: pointer;
 }
 
 .filled {

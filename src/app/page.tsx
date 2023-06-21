@@ -22,13 +22,17 @@ function Page() {
                 background: "#EAEAEA",
             }}
         >
-            <IconButton content="minus" disabled={false} onClick={() => console.log("minus")} />
-            <IconButton content="plus" disabled={false} onClick={() => console.log("plus")} />
-            <IconButton content="minus" disabled={true} />
-            <IconButton content="plus" disabled={true} />
+            <IconButton icon="minus" onClick={() => console.log("minus")} />
+            <IconButton icon="plus" onClick={() => console.log("plus")} />
+            <IconButton icon="minus" disabled />
+            <IconButton icon="plus" disabled />
 
-            <TextButton content="Да" style="filled" onClick={() => console.log("Да")} />
-            <TextButton content="Нет" style="outlined" onClick={() => console.log("Нет")} />
+            <TextButton variant="filled" onClick={() => console.log("Да")}>
+                Да
+            </TextButton>
+            <TextButton variant="outlined" onClick={() => console.log("Нет")}>
+                Нет
+            </TextButton>
 
             <TextInput
                 htmlId="input-first"
