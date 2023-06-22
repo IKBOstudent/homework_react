@@ -48,14 +48,11 @@
     transition: 200ms;
     width: 20px;
     height: 20px;
+    color: var(--color-gray);
 }
 
 .icon.active {
     transform: rotate(180deg);
-}
-
-.icon path {
-    fill: var(--color-gray);
 }
 
 .list_wrapper {

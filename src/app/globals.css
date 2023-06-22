@@ -1,4 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+:root {
+    --border-color-default: #e1e3e6;
+    --border-radius-small: 4px;
+    --border-radius-default: 8px;
+
+    --color-orange: #ff5500;
+    --color-orange-disabled: #ffa375;
+    --color-orange-hover: #e94e00;
+
+    --color-primary: #1b1f23;
+    --color-gray: #999fa6;
+    --color-gray-3: #828282;
+    --color-gray-5: #e0e0e0;
+    --color-dark-gray: #333333;
+
+    --background-default: #f5f5f5;
+    --background-hover: #f8f8f8;
+}
 
 * {
     font-family: "Roboto", sans-serif;
@@ -13,23 +30,36 @@
 
 html,
 body {
-    --border-color-default: #e1e3e6;
-    --border-radius-small: 4px;
-    --border-radius-default: 8px;
-
-    --color-orange: #ff5500;
-    --color-orange-disabled: #ffa375;
-    --color-orange-hover: #e94e00;
-
-    --color-primary: #1b1f23;
-    --color-gray: #999fa6;
-    --color-dark-gray: #333333;
-
     max-width: 100vw;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
+}
+
+.app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-default);
+}
+
+.app-main {
+    margin: 24px 32px;
+    flex-grow: 1;
+    display: grid;
+    height: 100%;
 }
 
 a {
     color: inherit;
     text-decoration: none;
+}
+
+.modal-wrapper {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 999;
+    background-color: rgb(0, 0, 0, 0.5);
 }

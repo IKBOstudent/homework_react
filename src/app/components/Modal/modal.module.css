@@ -21,7 +21,7 @@
     justify-content: space-between;
     align-items: center;
 
-    font-weight: 600;
+    font-weight: 700;
     font-size: 20px;
     color: var(--color-primary);
 }
@@ -29,14 +29,11 @@
 .icon {
     width: 16px;
     height: 16px;
+    color: var(--color-primary);
 }
 
 .icon:hover {
     cursor: pointer;
-}
-
-.icon path {
-    fill: var(--color-primary);
 }
 
 .subtitle {

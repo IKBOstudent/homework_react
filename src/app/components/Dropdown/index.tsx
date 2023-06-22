@@ -1,15 +1,16 @@
-import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import React, { MouseEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import IconArrow from "@/app/assets/icon-arrow.svg";
-
 import styles from "./dropdown.module.css";
+
+import IconArrow from "@/app/assets/icon-arrow.svg";
+import { IDropdownTypes } from "@/app/page";
 
 interface Props {
     htmlId: string;
     label: string;
     placeholder: string;
-    items: string[];
+    items: IDropdownTypes[];
 }
 
 export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
@@ -31,7 +32,7 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
     useEffect(() => {
         function handler(e: Event) {
             if (
-                e.target instanceof HTMLElement &&
+                e.target instanceof Node &&
                 !listRef.current?.contains(e.target) &&
                 !buttonRef.current?.contains(e.target)
             ) {
@@ -54,11 +55,15 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
                     className={clsx(
                         styles.select,
                         selectedItem !== -1 && styles.active,
-                        isOpen && styles.focus,
+                        isOpen && styles.focus
                     )}
                 >
-                    {selectedItem === -1 ? placeholder : items[selectedItem]}
-                    <IconArrow className={clsx(styles.icon, isOpen && styles.active)} />
+                    {selectedItem === -1 ? placeholder : items[selectedItem].name}
+
+                    <IconArrow
+                        id={`arrow-${htmlId}`}
+                        className={clsx(styles.icon, isOpen && styles.active)}
+                    />
                 </button>
             </label>
             <div className={styles.list_wrapper}>
@@ -70,11 +75,11 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
                                     key={i}
                                     className={clsx(
                                         styles.list_item,
-                                        i === selectedItem && styles.active,
+                                        i === selectedItem && styles.active
                                     )}
                                     onClick={() => handleSelect(i)}
                                 >
-                                    {item}
+                                    {item.name}
                                 </li>
                             ))}
                     </ul>

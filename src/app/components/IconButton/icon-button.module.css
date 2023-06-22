@@ -13,10 +13,7 @@
 .icon {
     width: 12px;
     height: 12px;
-}
-
-.icon path {
-    fill: white;
+    color: white;
 }
 
 .plus {
