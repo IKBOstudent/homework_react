@@ -25,6 +25,10 @@
     gap: 8px;
 }
 
+.cart a {
+    display: flex;
+}
+
 .cart_badge {
     width: 28px;
     height: 28px;

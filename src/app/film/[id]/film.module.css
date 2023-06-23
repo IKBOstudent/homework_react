@@ -6,8 +6,8 @@
 
 .film_card,
 .review_section {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: 32px;
 
     padding: 24px;
@@ -20,8 +20,8 @@
 
 .film_poster {
     object-fit: cover;
-    /* width: 400px; */
-    /* height: 500px; */
+    width: 400px;
+    height: 500px;
     background-color: var(--border-color-default);
     border-radius: var(--border-radius-default);
 }

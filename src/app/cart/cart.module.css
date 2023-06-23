@@ -1,2 +1,30 @@
 .root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.cart_list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 24px;
+
+    background-color: white;
+    border-radius: var(--border-radius-default);
+}
+
+.total h3,
+.total span {
+    color: var(--color-primary);
+    font-size: 20px;
+    font-weight: 700;
 }

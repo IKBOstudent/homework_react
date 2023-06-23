@@ -7,13 +7,7 @@ import Image from "next/image";
 import IconButton from "@/app/components/IconButton";
 import { useTicketCount } from "@/app/hooks/useTicketCount";
 import IconPicture from "@/app/assets/icon-picture.svg";
-
-const genres: { [x: string]: string } = {
-    action: "Боевик",
-    comedy: "Комедия",
-    fantasy: "Фэнтези",
-    horror: "Ужасы",
-};
+import { GENRES } from "@/app/page";
 
 export default function FilmPage({ params }: { params: { id: number } }) {
     const { count, increment, decrement } = useTicketCount(0, 30);
@@ -87,7 +81,7 @@ export default function FilmPage({ params }: { params: { id: number } }) {
                             <div className={styles.film_header_info_item}>
                                 <h4 className={styles.film_header_info_name}>Жанр:</h4>
                                 <sub className={styles.film_header_info_value}>
-                                    {genres[movie.genre]}
+                                    {GENRES[movie.genre]}
                                 </sub>
                             </div>
 

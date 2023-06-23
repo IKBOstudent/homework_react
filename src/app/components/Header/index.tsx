@@ -14,7 +14,9 @@ export default function Header() {
             </Link>
             <div className={styles.cart}>
                 <span className={styles.cart_badge}>{cartItemsCount}</span>
-                <IconBag className={styles.icon} />
+                <Link href="/cart">
+                    <IconBag className={styles.icon} />
+                </Link>
             </div>
         </header>
     );

@@ -1,2 +1,17 @@
 .root {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.header {
+    padding: 24px;
+
+    color: var(--color-primary);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 32px;
+}
+
+.list {
 }

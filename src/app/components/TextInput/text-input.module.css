@@ -19,6 +19,7 @@
 }
 
 .input::placeholder {
+    opacity: 100%;
     color: var(--color-gray);
 }
 
