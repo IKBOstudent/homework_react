@@ -1,6 +1,6 @@
 import React, { ReactNode, useContext, useState, createContext, useCallback } from "react";
 
-import IconArrow from "@/app/assets/icon-arrow.svg";
+import IconArrow from "@/assets/icon-arrow.svg";
 
 import styles from "./accordion.module.css";
 import clsx from "clsx";
@@ -22,7 +22,7 @@ export default function Accordion({ children }: AccordionProps) {
 
     const toggleGroup = useCallback(
         (newId: number) => setActiveGroup((prevId) => (newId === prevId ? -1 : newId)),
-        []
+        [],
     );
 
     return (
@@ -41,12 +41,12 @@ Accordion.Group = function Group({ id, title, text }: GroupProps) {
     const { activeGroup, toggleGroup } = context;
 
     return (
-        <div className={styles.group}>
+        <div className={`card ${styles.group}`}>
             <div className={styles.title} onClick={() => toggleGroup(id)}>
                 {title}
                 <IconArrow className={clsx(styles.icon, id === activeGroup && styles.active)} />
             </div>
-            {id === activeGroup && <p className={styles.text}>{text}</p>}
+            {id === activeGroup && <p>{text}</p>}
         </div>
     );
 };

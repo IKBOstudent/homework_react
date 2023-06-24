@@ -1,8 +1,8 @@
 import { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
 
-import IconMinus from "@/app/assets/icon-minus.svg";
-import IconPlus from "@/app/assets/icon-plus.svg";
+import IconMinus from "@/assets/icon-minus.svg";
+import IconPlus from "@/assets/icon-plus.svg";
 
 import styles from "./icon-button.module.css";
 

@@ -1,14 +1,16 @@
 .root {
+    height: fit-content;
     display: flex;
     flex-direction: column;
     gap: 16px;
-
     padding: 24px;
 
+    background-color: white;
+    border-radius: var(--border-radius-default);
     color: var(--color-primary);
 }
 
-.root h2 {
+.root h1 {
     font-size: 32px;
     font-weight: 700;
     line-height: 32px;

@@ -9,6 +9,7 @@ import Dropdown from "@/app/components/Dropdown";
 import TicketCard from "@/app/components/TicketCard";
 
 const cinemas = [
+    { id: null, name: "Не выбрано" },
     {
         id: "CTfrB5PGEJHBwxCNlU4uo",
         name: "Синема сад",
@@ -188,8 +189,6 @@ const movies = [
     },
 ];
 
-type IGenreType = "action" | "comedy" | "fantasy" | "horror";
-
 export interface IDropdownTypes {
     id: string | null;
     name: string;
@@ -217,44 +216,47 @@ export default function MainPage() {
     return (
         <div className={styles.main}>
             <div className={styles.sidebar}>
-                <h2 className={styles.filters_header}>Фильтр поиска</h2>
-                <div className={styles.filter_list}>
-                    <TextInput
-                        htmlId="input-name"
-                        label="Название"
-                        placeholder="Введите название"
-                        value={filmName}
-                        onChange={(e) => setFilmName(e.target.value)}
-                    />
+                <div className={styles.filters_container}>
+                    <h2 className={styles.filters_header}>Фильтр поиска</h2>
+                    <div className={styles.filter_list}>
+                        <TextInput
+                            htmlId="input-name"
+                            label="Название"
+                            placeholder="Введите название"
+                            value={filmName}
+                            onChange={(e) => setFilmName(e.target.value)}
+                        />
 
-                    <Dropdown
-                        htmlId="dropdown-genre"
-                        label="Жанр"
-                        placeholder="Выберите жанр"
-                        items={genres}
-                    />
+                        <Dropdown
+                            htmlId="dropdown-genre"
+                            label="Жанр"
+                            placeholder="Выберите жанр"
+                            items={genres}
+                        />
 
-                    <Dropdown
-                        htmlId="dropdown-cinema"
-                        label="Кинотеатр"
-                        placeholder="Выберите кинотеатр"
-                        items={cinemas}
-                    />
+                        <Dropdown
+                            htmlId="dropdown-cinema"
+                            label="Кинотеатр"
+                            placeholder="Выберите кинотеатр"
+                            items={cinemas}
+                        />
+                    </div>
                 </div>
             </div>
 
             <div className={styles.film_list}>
-                {[1, 2].map((film, i) => (
-                    <TicketCard
-                        key={i}
-                        id={i.toString()}
-                        title={"Властелин колец: Братство кольца"}
-                        subtitle={"Фэнтези"}
-                        posterURL={""}
-                        initialValue={0}
-                        removable={false}
-                    />
-                ))}
+                {movies.length > 0 &&
+                    movies.map((film, i) => (
+                        <TicketCard
+                            key={i}
+                            id={film.id}
+                            title={film.title}
+                            subtitle={GENRES[film.genre]}
+                            posterURL={film.posterUrl}
+                            initialValue={0}
+                            removable={false}
+                        />
+                    ))}
             </div>
         </div>
     );

@@ -6,8 +6,8 @@ import styles from "./qa.module.css";
 export default function QAPage() {
     return (
         <div className={styles.root}>
-            <div className={styles.header}>Вопросы-ответы</div>
-            <div className={styles.list}>
+            <div className={`card ${styles.header}`}>Вопросы-ответы</div>
+            <div>
                 <Accordion>
                     <Accordion.Group
                         id={1}
@@ -19,11 +19,15 @@ export default function QAPage() {
                         title="Какой компании принадлежит Билетопоиск?"
                         text="Сайт был создан 7 ноября 2003 года, его основатели — Виталий Таций и Дмитрий Суханов. Владельцем проекта являлась компания ООО «Билетопоиск», которой принадлежало 60 % акций проекта, 40 % акций принадлежало её совладельцу — французской компании ООО AlloCiné. 15 октября 2013 года сервис купила компания «Яндекс» (размер сделки — $80 млн, около 2,6 млрд рублей на то время)."
                     />
-                    <Accordion.Group id={3} title="Как купить билет на Билетопоиск?" text="Никак" />
+                    <Accordion.Group
+                        id={3}
+                        title="Как купить билет на Билетопоиск?"
+                        text="Пока что никак"
+                    />
                     <Accordion.Group
                         id={4}
                         title="Как оставить отзыв на Билетопоиск?"
-                        text="Никак"
+                        text="Пока что никак"
                     />
                 </Accordion>
             </div>

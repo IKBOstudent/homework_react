@@ -21,13 +21,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
             <body className={roboto.className}>
-                <div className="app-container">
+                <div id="app-container">
                     <Header />
-                    <main className="app-main">{children}</main>
+                    <main>{children}</main>
                     <Footer />
                 </div>
 
-                <div className="modal-container"></div>
+                <div id="modal-container"></div>
+                <div id="popover-container"></div>
             </body>
         </html>
     );

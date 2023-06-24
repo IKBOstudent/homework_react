@@ -25,12 +25,11 @@ export default function TicketCard({
     removable,
 }: Props) {
     if (removable && initialValue === 0) {
-        // can't appear in cart
         return null;
     }
 
     return (
-        <div className={styles.root}>
+        <div className={`card ${styles.root}`}>
             {Boolean(posterURL) ? (
                 <Image
                     width={100}
@@ -44,10 +43,8 @@ export default function TicketCard({
                 <div className={styles.no_image}></div>
             )}
             <div className={styles.main}>
-                <Link href={`/film/${id}`} className={styles.title}>
-                    {title}
-                </Link>
-                <span className={styles.subtitle}>{subtitle}</span>
+                <Link href={`/film/${id}`}>{title}</Link>
+                <span>{subtitle}</span>
             </div>
 
             {removable ? (

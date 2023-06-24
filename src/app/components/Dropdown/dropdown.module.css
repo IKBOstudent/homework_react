@@ -13,18 +13,19 @@
 }
 
 .select {
+    width: 360px;
+    height: 40px;
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 40px;
+
     padding: 10px 16px;
-    width: 360px;
 
     background-color: white;
     color: var(--color-gray);
     border: 1px solid var(--border-color-default);
     border-radius: var(--border-radius-default);
-
     outline: none;
 
     transition: 100ms;
@@ -45,45 +46,35 @@
 }
 
 .icon {
-    transition: 200ms;
     width: 20px;
     height: 20px;
+
     color: var(--color-gray);
+    transition: 200ms;
 }
 
 .icon.active {
     transform: rotate(180deg);
 }
 
-.list_wrapper {
-    position: relative;
-}
-
 .list {
-    position: absolute;
-    top: 0;
-    left: 0;
-
     display: flex;
     flex-direction: column;
-    width: 360px;
     padding: 8px;
-
-    background-color: white;
-    box-shadow: 0px 10px 22px -4px #1b1f231f;
-    border-radius: var(--border-radius-default);
     list-style: none;
 }
 
 .list_item {
     height: 42px;
     padding: 12px;
+
     color: var(--color-primary);
+
     transition: 100ms;
 }
 
 .list_item:hover,
 .list_item.active {
     cursor: pointer;
-    background-color: var(--border-color-default);
+    background-color: whitesmoke;
 }

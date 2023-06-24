@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./header.module.css";
 
-import IconBag from "@/app/assets/icon-bag.svg";
+import IconBag from "@/assets/icon-bag.svg";
 import Link from "next/link";
 
 export default function Header() {
@@ -13,7 +13,7 @@ export default function Header() {
                 Билетопоиск
             </Link>
             <div className={styles.cart}>
-                <span className={styles.cart_badge}>{cartItemsCount}</span>
+                <span>{cartItemsCount}</span>
                 <Link href="/cart">
                     <IconBag className={styles.icon} />
                 </Link>

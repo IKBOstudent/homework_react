@@ -6,7 +6,7 @@ import styles from "./film.module.css";
 import Image from "next/image";
 import IconButton from "@/app/components/IconButton";
 import { useTicketCount } from "@/app/hooks/useTicketCount";
-import IconPicture from "@/app/assets/icon-picture.svg";
+import IconPicture from "@/assets/icon-picture.svg";
 import { GENRES } from "@/app/page";
 
 export default function FilmPage({ params }: { params: { id: number } }) {

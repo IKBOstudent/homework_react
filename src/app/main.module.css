@@ -1,15 +1,23 @@
 .main {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: 24px;
+    align-items: start;
 }
 
 .sidebar {
+    height: 100%;
+}
+
+.filters_container {
+    --offset-top: calc(84px + 24px);
+    position: sticky;
+    top: var(--offset-top);
+    padding: 24px;
+
     display: flex;
     flex-direction: column;
     gap: 20px;
-
-    padding: 24px;
 
     background-color: white;
     border-radius: var(--border-radius-default);
@@ -17,7 +25,7 @@
 
 .filters_header {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-primary);
 }
 
@@ -28,8 +36,7 @@
 }
 
 .film_list {
-    flex-grow: 1;
-
+    overflow: auto;
     display: flex;
     flex-direction: column;
     gap: 16px;

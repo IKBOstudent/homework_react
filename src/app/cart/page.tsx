@@ -27,13 +27,6 @@ export default function CartPage() {
             genre: "fantasy",
             id: "5flr8UOuJz7UuputaZ9iL",
         },
-        {
-            count: 3,
-            title: "Властелин колец: Возвращение короля",
-            posterUrl: "https://i.postimg.cc/FF8sXZgc/3.webp",
-            genre: "fantasy",
-            id: "5flr8UOuJz7UuputaZ9iL",
-        },
     ];
     return (
         <div className={styles.root}>
@@ -51,7 +44,7 @@ export default function CartPage() {
                         />
                     ))}
             </div>
-            <div className={styles.total}>
+            <div className={`card ${styles.total}`}>
                 <h3>Итого билетов</h3>
                 <span>{cart.reduce((sum, item) => (sum += item.count), 0)}</span>
             </div>

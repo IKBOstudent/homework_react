@@ -22,7 +22,7 @@
     object-fit: cover;
     width: 400px;
     height: 500px;
-    background-color: var(--border-color-default);
+    background-color: whitesmoke;
     border-radius: var(--border-radius-default);
 }
 

@@ -10,7 +10,7 @@ export function MainTicketControlls({ initialValue }: { initialValue: number }) 
     return (
         <div className={styles.buttons}>
             <IconButton icon="minus" onClick={decrement} disabled={count === 0} />
-            <span className={styles.count}>{count}</span>
+            <span>{count}</span>
             <IconButton icon="plus" onClick={increment} disabled={count === 30} />
         </div>
     );
