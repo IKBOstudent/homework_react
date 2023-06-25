@@ -1,10 +1,15 @@
 "use client";
 
+import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
 import TicketCard from "../components/TicketCard";
 import { GENRES } from "../page";
 import styles from "./cart.module.css";
+import { cartActions } from "@/redux/store/cartSlice";
 
 export default function CartPage() {
+    const dispatch = useAppDispatch();
+    const count = useAppSelector((state) => state.cart.count);
+
     const cart = [
         {
             count: 1,

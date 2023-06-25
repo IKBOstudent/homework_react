@@ -13,14 +13,10 @@
     --offset-top: calc(84px + 24px);
     position: sticky;
     top: var(--offset-top);
-    padding: 24px;
 
     display: flex;
     flex-direction: column;
     gap: 20px;
-
-    background-color: white;
-    border-radius: var(--border-radius-default);
 }
 
 .filters_header {
@@ -35,9 +31,16 @@
     gap: 16px;
 }
 
-.film_list {
+.movie_list {
     overflow: auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.fallback {
+    padding: 24px;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 20px;
 }

@@ -5,6 +5,7 @@ import "./globals.css";
 
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+import StoreProvider from "@/redux/StoreProvider";
 
 const roboto = Roboto({
     weight: ["400", "500", "700"],
@@ -21,14 +22,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
             <body className={roboto.className}>
-                <div id="app-container">
-                    <Header />
-                    <main>{children}</main>
-                    <Footer />
-                </div>
+                <StoreProvider>
+                    <div id="app-container">
+                        <Header />
+                        <main>{children}</main>
+                        <Footer />
+                    </div>
 
-                <div id="modal-container"></div>
-                <div id="popover-container"></div>
+                    <div id="modal-container"></div>
+                    <div id="popover-container"></div>
+                </StoreProvider>
             </body>
         </html>
     );

@@ -13,9 +13,10 @@ interface Props {
     label: string;
     placeholder: string;
     items: IDropdownTypes[];
+    setFilter: (index: number) => void;
 }
 
-export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
+export default function Dropdown({ htmlId, label, placeholder, items, setFilter }: Props) {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +66,10 @@ export default function Dropdown({ htmlId, label, placeholder, items }: Props) {
                                             styles.list_item,
                                             i === selectedItem && styles.active,
                                         )}
-                                        onClick={() => handleSelect(i)}
+                                        onClick={() => {
+                                            handleSelect(i);
+                                            setFilter(i);
+                                        }}
                                     >
                                         {item.name}
                                     </li>

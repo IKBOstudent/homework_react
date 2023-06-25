@@ -4,21 +4,15 @@
     gap: 24px;
 }
 
-.film_card,
-.review_section {
+.movie_card {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 32px;
 
-    padding: 24px;
-
-    background-color: white;
-    border-radius: var(--border-radius-default);
-
     color: var(--color-primary);
 }
 
-.film_poster {
+.movie_poster {
     object-fit: cover;
     width: 400px;
     height: 500px;
@@ -26,25 +20,25 @@
     border-radius: var(--border-radius-default);
 }
 
-.film_content {
+.movie_content {
     display: flex;
     flex-direction: column;
     gap: 32px;
 }
 
-.film_header_content {
+.movie_header_content {
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-.film_header_head {
+.movie_header_head {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.film_header_title {
+.movie_header_head h1 {
     font-size: 32px;
     font-weight: 600;
     line-height: 32px;
@@ -56,100 +50,55 @@
     gap: 8px;
 }
 
-.count {
+.buttons span {
     font-weight: 700;
     font-size: 20px;
 }
 
-.film_header_info_list {
+.movie_header_info_list {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.film_header_info_item {
+.movie_header_info_item {
     display: flex;
     flex-direction: row;
     gap: 8px;
 }
 
-.film_header_info_name {
+.movie_header_info_item h4 {
     font-weight: 700;
-}
-
-.film_header_info_name,
-.film_header_info_value {
     font-size: 20px;
     line-height: 24px;
 }
 
-.film_main_content {
+.movie_header_info_item span {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.movie_description {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-.film_main_head {
+.movie_description h4 {
     font-size: 20px;
     font-weight: 700;
     line-height: 32px;
 }
 
-.film_main_description {
+.movie_description p {
     font-size: 16px;
     line-height: 24px;
 }
 
-.review_avatar {
-    width: 100px;
-    height: 100px;
+.movie_fallback {
+    height: 548px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: var(--color-gray-5);
-    border-radius: var(--border-radius-default);
-}
-
-.review_icon {
-    width: 32px;
-    height: 32px;
-    color: var(--color-gray-3);
-}
-
-.review_content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.review_header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.review_name,
-.review_rating h4,
-.review_rating b {
     font-size: 20px;
     font-weight: 700;
     line-height: 32px;
-}
-
-.review_rating {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-}
-
-.review_rating h4 {
-    font-weight: 400;
-}
-
-.review_text {
-    font-size: 16px;
-    line-height: 24px;
 }
