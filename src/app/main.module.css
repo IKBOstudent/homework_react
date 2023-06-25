@@ -40,7 +40,8 @@
 
 .fallback {
     padding: 24px;
-    color: var(--color-primary);
+
+    color: var(--color-gray);
     font-weight: 700;
     font-size: 20px;
 }

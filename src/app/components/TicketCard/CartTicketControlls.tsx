@@ -1,32 +1,35 @@
-import React, {
-    MouseEvent,
-    ReactNode,
-    useCallback,
-    useLayoutEffect,
-    useRef,
-    useState,
-} from "react";
+import React, { MouseEvent, useCallback, useState } from "react";
 
 import styles from "./ticket-card.module.css";
 
-import { useTicketCount } from "@/app/hooks/useTicketCount";
 import Modal from "@/app/components/Modal";
 import IconCross from "@/assets/icon-cross.svg";
 import IconButton from "@/app/components/IconButton";
 import PortalWrapper from "../PortalWrapper";
 
-export function CartTicketControlls({ initialValue }: { initialValue: number }) {
-    const { count, increment, decrement } = useTicketCount(initialValue, 30);
+import { useAppDispatch } from "@/redux/reduxHooks";
+import { cartActions } from "@/redux/store/cartSlice";
+
+interface Props {
+    id: string;
+    count: number;
+}
+
+export function CartTicketControlls({ id, count }: Props) {
+    const dispatch = useAppDispatch();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const handleClose = useCallback((approve: boolean) => {
-        setIsOpen(false);
-        console.log(approve ? "Delete" : "Keep");
-        if (approve) {
-            // TODO
-        }
-    }, []);
+    const handleClose = useCallback(
+        (approve: boolean) => {
+            setIsOpen(false);
+            console.log(approve ? "Delete" : "Keep");
+            if (approve) {
+                dispatch(cartActions.remove({ id }));
+            }
+        },
+        [id, dispatch],
+    );
 
     const handleOpen = (e: MouseEvent<HTMLElement>) => {
         e.stopPropagation();
@@ -47,11 +50,15 @@ export function CartTicketControlls({ initialValue }: { initialValue: number }) 
             <div className={styles.buttons}>
                 <IconButton
                     icon="minus"
-                    onClick={count > 1 ? decrement : handleOpen}
+                    onClick={count > 1 ? () => dispatch(cartActions.decrement({ id })) : handleOpen}
                     disabled={count === 0}
                 />
                 <span>{count}</span>
-                <IconButton icon="plus" onClick={increment} disabled={count === 30} />
+                <IconButton
+                    icon="plus"
+                    onClick={() => dispatch(cartActions.increment({ id }))}
+                    disabled={count === 30}
+                />
             </div>
             <IconCross className={styles.icon_close} onClick={handleOpen} />
         </>

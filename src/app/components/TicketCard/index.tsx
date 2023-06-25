@@ -10,31 +10,24 @@ import { CartTicketControlls } from "./CartTicketControlls";
 interface Props {
     id: string;
     title: string;
-    subtitle: string;
-    posterURL?: string;
-    initialValue: number;
+    genre: string;
+    posterUrl?: string;
+    count: number;
     removable: boolean;
 }
 
-export default function TicketCard({
-    id,
-    title,
-    subtitle,
-    posterURL,
-    initialValue,
-    removable,
-}: Props) {
-    if (removable && initialValue === 0) {
+export default function TicketCard({ id, title, genre, posterUrl, count, removable }: Props) {
+    if (removable && count === 0) {
         return null;
     }
 
     return (
         <div className={`card ${styles.root}`}>
-            {posterURL ? (
+            {posterUrl ? (
                 <Image
                     width={100}
                     height={120}
-                    src={posterURL}
+                    src={posterUrl}
                     alt="movie poster"
                     className={styles.image}
                     priority
@@ -44,13 +37,19 @@ export default function TicketCard({
             )}
             <div className={styles.main}>
                 <Link href={`/movie/${id}`}>{title}</Link>
-                <span>{subtitle}</span>
+                <span>{genre}</span>
             </div>
 
             {removable ? (
-                <CartTicketControlls initialValue={initialValue} />
+                <CartTicketControlls id={id} count={count} />
             ) : (
-                <MainTicketControlls initialValue={initialValue} />
+                <MainTicketControlls
+                    id={id}
+                    title={title}
+                    genre={genre}
+                    posterUrl={posterUrl}
+                    count={count}
+                />
             )}
         </div>
     );

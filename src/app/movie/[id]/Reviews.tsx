@@ -7,7 +7,12 @@ export default function Reviews({ movieId }: { movieId: string }) {
     const { data: reviews = [], isFetching, isError } = useGetReviewsByMovieIdQuery(movieId);
 
     if (isFetching) {
-        return <div className={`card ${styles.review_fallback}`}>Идет загрузка отзывов...</div>;
+        return [1, 2].map((_, i) => (
+            <div key={i} className={`card ${styles.review_fallback}`}>
+                <div></div>
+                Загрузка отзыва...
+            </div>
+        ));
     }
 
     if (isError) {

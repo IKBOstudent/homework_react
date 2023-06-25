@@ -60,9 +60,19 @@
 }
 
 .review_fallback {
-    height: 148px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
 
+    color: var(--color-gray);
     font-size: 20px;
     font-weight: 700;
-    line-height: 32px;
+}
+
+.review_fallback div {
+    width: 100px;
+    height: 100px;
+
+    background-color: whitesmoke;
+    border-radius: var(--border-radius-default);
 }

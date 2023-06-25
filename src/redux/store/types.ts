@@ -7,13 +7,20 @@ export const GENRES = {
 
 export type TGenre = keyof typeof GENRES;
 
+export type TCartItem = {
+    title: string;
+    posterUrl?: string;
+    genre: TGenre;
+    count: number;
+};
+
 export type TMovie = {
+    id: string;
     title: string;
     posterUrl?: string;
     releaseYear: number;
     description: string;
     genre: TGenre;
-    id: string;
     rating: number;
     director: string;
     reviewIds: string[];

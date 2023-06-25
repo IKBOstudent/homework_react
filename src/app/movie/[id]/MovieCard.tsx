@@ -1,18 +1,24 @@
 import Image from "next/image";
 import IconButton from "@/app/components/IconButton";
-import { useTicketCount } from "@/app/hooks/useTicketCount";
 import { useGetMovieByIdQuery } from "@/redux/store/api";
 import { GENRES } from "@/redux/store/types";
 
 import styles from "./movie.module.css";
+import { useAppDispatch, useAppSelector } from "@/redux/reduxHooks";
+import { cartActions } from "@/redux/store/cartSlice";
 
 export default function MovieCard({ movieId }: { movieId: string }) {
-    const { count, increment, decrement } = useTicketCount(0, 30);
+    const dispatch = useAppDispatch();
+    const cartItem = useAppSelector((state) => state.cart.cartItems[movieId]);
 
     const { data: movie, isFetching, isError } = useGetMovieByIdQuery(movieId);
 
     if (isFetching) {
-        return <div className={`card ${styles.movie_fallback}`}>Идет загрузка фильма...</div>;
+        return (
+            <div className={`card ${styles.movie_fallback}`}>
+                <div className={styles.movie_poster}></div>Загрузка фильма...
+            </div>
+        );
     }
 
     if (isError) {
@@ -22,6 +28,21 @@ export default function MovieCard({ movieId }: { movieId: string }) {
     if (!movie) {
         return <div className={`card ${styles.movie_fallback}`}>Фильм не найден</div>;
     }
+
+    const handleIncrement = () => {
+        if (!cartItem) {
+            dispatch(
+                cartActions.add({
+                    id: movie.id,
+                    title: movie.title,
+                    genre: movie.genre,
+                    posterUrl: movie.posterUrl,
+                }),
+            );
+        } else {
+            dispatch(cartActions.increment({ id: movie.id }));
+        }
+    };
 
     return (
         <div className={`card ${styles.movie_card}`}>
@@ -42,9 +63,17 @@ export default function MovieCard({ movieId }: { movieId: string }) {
                     <div className={styles.movie_header_head}>
                         <h1>{movie.title}</h1>
                         <div className={styles.buttons}>
-                            <IconButton icon="minus" onClick={decrement} disabled={count === 0} />
-                            <span>{count}</span>
-                            <IconButton icon="plus" onClick={increment} disabled={count === 30} />
+                            <IconButton
+                                icon="minus"
+                                onClick={() => dispatch(cartActions.decrement({ id: movie.id }))}
+                                disabled={!cartItem}
+                            />
+                            <span>{cartItem?.count || 0}</span>
+                            <IconButton
+                                icon="plus"
+                                onClick={handleIncrement}
+                                disabled={cartItem?.count === 30}
+                            />
                         </div>
                     </div>
                     <div className={styles.movie_header_info_list}>
