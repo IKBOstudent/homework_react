@@ -5,14 +5,8 @@ export function useDropdown(
     popoverRef: RefObject<HTMLElement>,
 ) {
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [selectedItem, setSelectedItem] = useState<number>(-1);
 
     const toggle = useCallback(() => setIsOpen((prev) => !prev), []);
-
-    const handleSelect = useCallback((index: number) => {
-        setSelectedItem(index);
-        setIsOpen(false);
-    }, []);
 
     const clickOutsideHandler = useCallback(
         (e: Event) => {
@@ -33,5 +27,5 @@ export function useDropdown(
         return () => window.removeEventListener("click", clickOutsideHandler);
     }, [clickOutsideHandler]);
 
-    return { isOpen, selectedItem, toggle, handleSelect };
+    return { isOpen, toggle };
 }

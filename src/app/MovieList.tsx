@@ -1,30 +1,17 @@
 import { useGetMoviesQuery } from "@/redux/store/api";
-import { GENRES, TGenre } from "@/redux/store/types";
+import { GENRES, TGenre, TMovie } from "@/redux/store/types";
 
 import styles from "./main.module.css";
 import TicketCard from "./components/TicketCard";
 import { useAppSelector } from "@/redux/reduxHooks";
+import { getCinemaIdFilter, getFilteredMovies } from "@/redux/store/filterSlice";
 
-interface MoviesProps {
-    movieName: string;
-    genreFilter: TGenre | null;
-    cinemaIdFilter: string | null;
-}
+export default function MovieList() {
+    const cinemaId = useAppSelector(getCinemaIdFilter);
+    const { isError, isFetching } = useGetMoviesQuery(cinemaId);
+    const filteredData = useAppSelector(getFilteredMovies) || [];
 
-export default function MovieList({ movieName, genreFilter, cinemaIdFilter }: MoviesProps) {
-    const { data = [], isError, isFetching } = useGetMoviesQuery(cinemaIdFilter);
     const cartItems = useAppSelector((state) => state.cart.cartItems);
-
-    let filteredData = data;
-
-    if (movieName) {
-        filteredData = filteredData.filter((item) =>
-            item.title.toLowerCase().includes(movieName.toLowerCase()),
-        );
-    }
-    if (genreFilter) {
-        filteredData = filteredData.filter((item) => item.genre === genreFilter);
-    }
 
     if (isFetching) {
         return <div className={styles.fallback}>Поиск билетов...</div>;

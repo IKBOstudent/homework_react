@@ -13,14 +13,22 @@ interface Props {
     label: string;
     placeholder: string;
     items: IDropdownTypes[];
+    selectedItem: number;
     setFilter: (index: number) => void;
 }
 
-export default function Dropdown({ htmlId, label, placeholder, items, setFilter }: Props) {
+export default function Dropdown({
+    htmlId,
+    label,
+    placeholder,
+    items,
+    selectedItem,
+    setFilter,
+}: Props) {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const popoverRef = useRef<HTMLDivElement>(null);
 
-    const { isOpen, selectedItem, toggle, handleSelect } = useDropdown(buttonRef, popoverRef);
+    const { isOpen, toggle } = useDropdown(buttonRef, popoverRef);
 
     function getCoordinates() {
         if (buttonRef.current) {
@@ -29,6 +37,11 @@ export default function Dropdown({ htmlId, label, placeholder, items, setFilter 
         } else {
             return { top: 0, left: 0 };
         }
+    }
+
+    function handleSelect(index: number) {
+        setFilter(index);
+        toggle();
     }
 
     return (
@@ -66,10 +79,7 @@ export default function Dropdown({ htmlId, label, placeholder, items, setFilter 
                                             styles.list_item,
                                             i === selectedItem && styles.active,
                                         )}
-                                        onClick={() => {
-                                            handleSelect(i);
-                                            setFilter(i);
-                                        }}
+                                        onClick={() => handleSelect(i)}
                                     >
                                         {item.name}
                                     </li>

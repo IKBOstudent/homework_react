@@ -18,7 +18,6 @@ export function MainTicketControlls({ id, title, genre, posterUrl, count }: Prop
     const dispatch = useAppDispatch();
 
     function handleIncrement() {
-        console.log(count);
         if (count === 0) {
             dispatch(cartActions.add({ id, title, genre, posterUrl }));
         } else {

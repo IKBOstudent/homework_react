@@ -23,7 +23,6 @@ export function CartTicketControlls({ id, count }: Props) {
     const handleClose = useCallback(
         (approve: boolean) => {
             setIsOpen(false);
-            console.log(approve ? "Delete" : "Keep");
             if (approve) {
                 dispatch(cartActions.remove({ id }));
             }

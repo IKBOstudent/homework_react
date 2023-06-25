@@ -4,8 +4,6 @@ import { useAppSelector } from "@/redux/reduxHooks";
 import TicketCard from "../components/TicketCard";
 import styles from "./cart.module.css";
 
-import { GENRES } from "@/redux/store/types";
-
 export default function CartPage() {
     const items = useAppSelector((state) => state.cart.cartItems);
     const cartKeys = Object.keys(items);
@@ -22,7 +20,7 @@ export default function CartPage() {
                         key={key}
                         id={key}
                         title={items[key].title}
-                        genre={GENRES[items[key].genre]}
+                        genre={items[key].genre}
                         posterUrl={items[key].posterUrl}
                         count={items[key].count}
                         removable={true}
