@@ -4,7 +4,7 @@ import clsx from "clsx";
 import styles from "./dropdown.module.css";
 
 import IconArrow from "@/assets/icon-arrow.svg";
-import { IDropdownTypes } from "@/app/page";
+import { IDropdownItem } from "@/app/page";
 import PortalWrapper from "../PortalWrapper";
 import { useDropdown } from "@/app/hooks/useDropdown";
 
@@ -12,9 +12,10 @@ interface Props {
     htmlId: string;
     label: string;
     placeholder: string;
-    items: IDropdownTypes[];
+    items: IDropdownItem[];
     selectedItem: number;
     setFilter: (index: number) => void;
+    disabled: boolean;
 }
 
 export default function Dropdown({
@@ -24,6 +25,7 @@ export default function Dropdown({
     items,
     selectedItem,
     setFilter,
+    disabled,
 }: Props) {
     const buttonRef = useRef<HTMLButtonElement>(null);
     const popoverRef = useRef<HTMLDivElement>(null);
@@ -56,8 +58,9 @@ export default function Dropdown({
                     className={clsx(
                         styles.select,
                         selectedItem !== -1 && styles.active,
-                        isOpen && styles.focus,
+                        isOpen && styles.focus
                     )}
+                    disabled={disabled}
                 >
                     {selectedItem === -1 ? placeholder : items[selectedItem].name}
 
@@ -67,23 +70,26 @@ export default function Dropdown({
                     />
                 </button>
             </label>
-            {isOpen && (
+            {isOpen && items.length > 0 && (
                 <PortalWrapper containerSelector="#popover-container">
-                    <div className="popover-wrapper" style={getCoordinates()} ref={popoverRef}>
+                    <div
+                        className="popover-wrapper"
+                        style={getCoordinates()}
+                        ref={popoverRef}
+                    >
                         <ul className={styles.list}>
-                            {items.length > 0 &&
-                                items.map((item, i) => (
-                                    <li
-                                        key={i}
-                                        className={clsx(
-                                            styles.list_item,
-                                            i === selectedItem && styles.active,
-                                        )}
-                                        onClick={() => handleSelect(i)}
-                                    >
-                                        {item.name}
-                                    </li>
-                                ))}
+                            {items.map((item, i) => (
+                                <li
+                                    key={i}
+                                    className={clsx(
+                                        styles.list_item,
+                                        i === selectedItem && styles.active
+                                    )}
+                                    onClick={() => handleSelect(i)}
+                                >
+                                    {item.name}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </PortalWrapper>

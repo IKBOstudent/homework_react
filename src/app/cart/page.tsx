@@ -6,16 +6,16 @@ import styles from "./cart.module.css";
 
 export default function CartPage() {
     const items = useAppSelector((state) => state.cart.cartItems);
-    const cartKeys = Object.keys(items);
+    const total = useAppSelector((state) => state.cart.total);
 
-    if (cartKeys.length === 0) {
+    if (total === 0) {
         return <div className={styles.fallback}>Ваша корзина пуста.</div>;
     }
 
     return (
         <div className={styles.root}>
             <div className={styles.cart_list}>
-                {cartKeys.map((key) => (
+                {Object.keys(items).map((key) => (
                     <TicketCard
                         key={key}
                         id={key}
@@ -29,7 +29,7 @@ export default function CartPage() {
             </div>
             <div className={`card ${styles.total}`}>
                 <h3>Итого билетов</h3>
-                <span>{cartKeys.reduce((sum, key) => (sum += items[key].count), 0)}</span>
+                <span>{total}</span>
             </div>
         </div>
     );

@@ -6,13 +6,8 @@
 }
 
 .sidebar {
-    height: 100%;
-}
-
-.filters_container {
-    --offset-top: calc(84px + 24px);
     position: sticky;
-    top: var(--offset-top);
+    top: 108px;
 
     display: flex;
     flex-direction: column;

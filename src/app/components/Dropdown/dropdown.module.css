@@ -45,6 +45,11 @@
     border-color: var(--color-orange);
 }
 
+.select:disabled {
+    background-color: whitesmoke;
+    cursor: auto;
+}
+
 .icon {
     width: 20px;
     height: 20px;

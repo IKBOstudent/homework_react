@@ -9,8 +9,7 @@ import Link from "next/link";
 import { useAppSelector } from "@/redux/reduxHooks";
 
 export default function Header() {
-    const items = useAppSelector((state) => state.cart.cartItems);
-    const cartItemsCount = Object.keys(items).reduce((sum, key) => (sum += items[key].count), 0);
+    const cartItemsCount = useAppSelector((state) => state.cart.total);
 
     return (
         <header className={styles.root}>

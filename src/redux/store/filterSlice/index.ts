@@ -37,18 +37,32 @@ export const getMovieNameFilter = (state: RootState) => state.filters.movieName;
 export const getGenreFilter = (state: RootState) => state.filters.genreFilter;
 export const getCinemaIdFilter = (state: RootState) => state.filters.cinemaIdFilter;
 
+const emptyArray: TMovie[] = [];
+
+type TMovieSelector = {
+    data?: TMovie[];
+    movieName: string;
+    genreFilter?: TGenre | null;
+};
+
 export const getFilteredMovies = createSelector(
-    (state: RootState) => movieApi.endpoints.getMovies.select(state.filters.cinemaIdFilter)(state),
-    getMovieNameFilter,
-    getGenreFilter,
-    ({ data: movies }, movieName, genreFilter) => {
+    (movieSelector: TMovieSelector) => movieSelector.data || emptyArray,
+    (movieSelector: TMovieSelector) => movieSelector.movieName,
+    (movieSelector: TMovieSelector) => movieSelector.genreFilter,
+    (movies: TMovie[], movieName, genreFilter) => {
         return (
             movies &&
             movies
                 .filter((movie) =>
-                    movieName ? movie.title.toLowerCase().includes(movieName.toLowerCase()) : true,
+                    movieName
+                        ? movie.title
+                              .toLowerCase()
+                              .includes(movieName.toLowerCase())
+                        : true
                 )
-                .filter((movie) => (genreFilter ? movie.genre === genreFilter : true))
+                .filter((movie) =>
+                    genreFilter ? movie.genre === genreFilter : true
+                )
         );
-    },
+    }
 );

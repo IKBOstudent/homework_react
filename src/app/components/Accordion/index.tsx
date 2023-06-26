@@ -1,4 +1,10 @@
-import React, { ReactNode, useContext, useState, createContext, useCallback } from "react";
+import React, {
+    ReactNode,
+    useContext,
+    useState,
+    createContext,
+    useCallback,
+} from "react";
 
 import IconArrow from "@/assets/icon-arrow.svg";
 
@@ -15,14 +21,18 @@ interface GroupProps {
     text: string;
 }
 
-const AccordionContext = createContext({ activeGroup: -1, toggleGroup: (_: number) => {} });
+const AccordionContext = createContext({
+    activeGroup: -1,
+    toggleGroup: (_: number) => {},
+});
 
 export default function Accordion({ children }: AccordionProps) {
     const [activeGroup, setActiveGroup] = useState(-1);
 
     const toggleGroup = useCallback(
-        (newId: number) => setActiveGroup((prevId) => (newId === prevId ? -1 : newId)),
-        [],
+        (newId: number) =>
+            setActiveGroup((prevId) => (newId === prevId ? -1 : newId)),
+        []
     );
 
     return (
@@ -41,10 +51,15 @@ Accordion.Group = function Group({ id, title, text }: GroupProps) {
     const { activeGroup, toggleGroup } = context;
 
     return (
-        <div className={`card ${styles.group}`}>
-            <div className={styles.title} onClick={() => toggleGroup(id)}>
+        <div className={`card ${styles.group}`} onClick={() => toggleGroup(id)}>
+            <div className={styles.title}>
                 {title}
-                <IconArrow className={clsx(styles.icon, id === activeGroup && styles.active)} />
+                <IconArrow
+                    className={clsx(
+                        styles.icon,
+                        id === activeGroup && styles.active
+                    )}
+                />
             </div>
             {id === activeGroup && <p>{text}</p>}
         </div>

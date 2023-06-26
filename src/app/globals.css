@@ -1,14 +1,12 @@
 :root {
     --border-color-default: #e1e3e6;
-    /* --border-color-default: #d4d4d4; */
 
     --border-radius-small: 4px;
     --border-radius-default: 8px;
 
     --color-orange: #ff5500;
     --color-orange-disabled: #ffa375;
-    /* --color-orange-hover: #e94e00; */
-    --color-orange-hover: #c74909;
+    --color-orange-hover: #e94e00;
 
     --color-primary: #1b1f23;
     --color-gray: #999fa6;
@@ -17,7 +15,6 @@
     --color-dark-gray: #333333;
 
     --background-default: #f5f5f5;
-    /* --background-default: #eeeeee; */
     --background-hover: #f8f8f8;
 }
 
